@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的韓國小旅行 🇰🇷</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'fuji-blue': '#3B7AAE',
+                        'snow-white': '#FFFFFF',
+                        'warm-gray': '#F3F4F6',
+                        'text-gray': '#4B5563'
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 韓式可愛點點風格背景 */
+        body {
+            background-color: #F9FAFB;
+            background-image: radial-gradient(#D1D5DB 2px, transparent 2px);
+            background-size: 24px 24px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        /* 隱藏滾動條但保持可滾動 */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* 底部導航浮動動畫 */
+        .bottom-nav {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased relative pb-28">
+
+    <header class="pt-12 pb-8 px-6 text-center">
+        <h1 class="text-3xl font-bold text-fuji-blue mb-2"><i class="fa-solid fa-plane-departure mr-2"></i>首爾療癒小旅行</h1>
+        <p class="text-sm text-text-gray font-medium bg-white inline-block px-4 py-1 rounded-full shadow-sm">2026.05 Trip Itinerary</p>
+    </header>
+
+    <main class="max-w-md mx-auto px-4">
+
+        <section id="day1" class="mb-10">
+            <div class="flex items-center mb-4 pl-2">
+                <span class="bg-fuji-blue text-white text-xs font-bold px-3 py-1 rounded-full mr-2">Day 1</span>
+                <h2 class="text-xl font-bold text-gray-800">文化與美食巡禮</h2>
+            </div>
+
+            <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
+                
+                <div class="flex justify-between items-start mb-3 pl-3">
+                    <h3 class="text-lg font-bold text-gray-800">景福宮</h3>
+                    <span class="bg-orange-100 text-orange-600 text-xs font-bold px-2 py-1 rounded-md"><i class="fa-solid fa-landmark mr-1"></i>景點</span>
+                </div>
+                
+                <div class="flex gap-2 mb-4 pl-3">
+                    <span class="text-xs bg-pink-50 text-pink-500 px-2 py-1 rounded-full">#必拍</span>
+                    <span class="text-xs bg-blue-50 text-blue-500 px-2 py-1 rounded-full">#韓服體驗</span>
+                </div>
+
+                <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
+                    <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>租借韓服可以免費入場！建議走到光化門正中央，利用兩側的守衛當作前景，拍出穿越時空的感覺。</p>
+                    <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>景福宮設有地下停車場（前兩小時3000韓元），附近鐘路區有加油站但價格偏高，建議在外圍加滿。</p>
+                </div>
+            </div>
+
+            <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
+                
+                <div class="flex justify-between items-start mb-3 pl-3">
+                    <h3 class="text-lg font-bold text-gray-800">土俗村蔘雞湯</h3>
+                    <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-md"><i class="fa-solid fa-utensils mr-1"></i>食物</span>
+                </div>
+                
+                <div class="flex gap-2 mb-4 pl-3">
+                    <span class="text-xs bg-red-50 text-red-500 px-2 py-1 rounded-full">#必吃</span>
+                    <span class="text-xs bg-yellow-50 text-yellow-600 px-2 py-1 rounded-full">#排隊名店</span>
+                </div>
+
+                <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
+                    <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>剛上桌時雞湯還在滾！準備好錄影模式，捕捉湯汁沸騰和撒上蔥花的瞬間最誘人。</p>
+                    <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>餐廳提供專屬停車場（用餐免費1小時），位置不多，建議從景福宮步行前往最佳。</p>
+                </div>
+            </div>
+
+            <div class="bg-fuji-blue/10 rounded-3xl p-4 border border-fuji-blue/20 flex items-start gap-3">
+                <div class="text-2xl text-fuji-blue mt-1">✨</div>
+                <div class="text-sm">
+                    <p class="font-bold text-fuji-blue mb-1">Day 1 導遊貼心提醒</p>
+                    <p class="mb-1">👗 <strong>建議穿著：</strong>由於有韓服體驗與大量步行，請穿著好穿脫的上衣與極舒適的平底鞋。</p>
+                    <p>☀️ <strong>天氣提示：</strong>首爾春季早晚溫差大，白天約 20°C 晴朗微風，記得帶件薄外套防風。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="day2" class="mb-4">
+            <div class="flex items-center mb-4 pl-2">
+                <span class="bg-fuji-blue text-white text-xs font-bold px-3 py-1 rounded-full mr-2">Day 2</span>
+                <h2 class="text-xl font-bold text-gray-800">浪漫與購物狂歡</h2>
+            </div>
+
+            <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
+                
+                <div class="flex justify-between items-start mb-3 pl-3">
+                    <h3 class="text-lg font-bold text-gray-800">明洞商圈</h3>
+                    <span class="bg-purple-100 text-purple-600 text-xs font-bold px-2 py-1 rounded-md"><i class="fa-solid fa-bag-shopping mr-1"></i>購物</span>
+                </div>
+                
+                <div class="flex gap-2 mb-4 pl-3">
+                    <span class="text-xs bg-purple-50 text-purple-500 px-2 py-1 rounded-full">#必買</span>
+                    <span class="text-xs bg-green-50 text-green-600 px-2 py-1 rounded-full">#美妝保養</span>
+                </div>
+
+                <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
+                    <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>傍晚時分拍攝街道兩側亮起的霓虹招牌與街頭小吃攤，能拍出最具韓國街頭感的氛圍。</p>
+                    <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>明洞商圈內部為行人徒步區，車輛無法進入。建議停在鄰近的新世界百貨（若有消費可折抵）。</p>
+                </div>
+            </div>
+
+            <div class="bg-fuji-blue/10 rounded-3xl p-4 border border-fuji-blue/20 flex items-start gap-3">
+                <div class="text-2xl text-fuji-blue mt-1">✨</div>
+                <div class="text-sm">
+                    <p class="font-bold text-fuji-blue mb-1">Day 2 導遊貼心提醒</p>
+                    <p class="mb-1">👗 <strong>建議穿著：</strong>血拼日！建議穿著輕便休閒服裝，背個容量大且輕的帆布包或雙肩包最方便。</p>
+                    <p>☀️ <strong>天氣提示：</strong>全日晴朗，約 22°C。室內外進出頻繁，洋蔥式穿搭尤佳，請注意防曬。</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <nav class="bottom-nav fixed bottom-6 left-1/2 transform -translate-x-1/2 w-11/12 max-w-sm rounded-full shadow-lg border border-gray-100 px-6 py-3 flex justify-between items-center z-50">
+        <a href="#day1" class="flex flex-col items-center text-fuji-blue hover:text-blue-800 transition">
+            <i class="fa-regular fa-calendar text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Day 1</span>
+        </a>
+        <a href="#" class="flex flex-col items-center text-fuji-blue hover:text-blue-800 transition -mt-5 bg-white rounded-full p-3 shadow-md border border-gray-50">
+            <i class="fa-solid fa-house text-2xl"></i>
+        </a>
+        <a href="#day2" class="flex flex-col items-center text-gray-400 hover:text-fuji-blue transition">
+            <i class="fa-solid fa-map-location-dot text-xl mb-1"></i>
+            <span class="text-[10px] font-bold">Day 2</span>
+        </a>
+    </nav>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 更新導航顏色狀態
+                document.querySelectorAll('.bottom-nav a').forEach(a => {
+                    if(!a.classList.contains('-mt-5')) { // 排除首頁按鈕
+                        a.classList.remove('text-fuji-blue');
+                        a.classList.add('text-gray-400');
+                    }
+                });
+                if(!this.classList.contains('-mt-5')) {
+                    this.classList.remove('text-gray-400');
+                    this.classList.add('text-fuji-blue');
+                }
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
