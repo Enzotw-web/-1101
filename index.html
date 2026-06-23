@@ -16,9 +16,7 @@
                         'warm-gray': '#F3F4F6',
                         'text-gray': '#4B5563'
                     },
-                    borderRadius: {
-                        '4xl': '2rem',
-                    }
+                    borderRadius: { '4xl': '2rem', }
                 }
             }
         }
@@ -36,7 +34,6 @@
             backdrop-filter: blur(10px);
             background-color: rgba(255, 255, 255, 0.9);
         }
-        /* 編輯模式下的虛線外框提示 */
         [contenteditable="true"] {
             outline: 2px dashed #3B7AAE;
             outline-offset: 4px;
@@ -49,19 +46,9 @@
             outline-style: solid;
             background-color: rgba(59, 122, 174, 0.1);
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            display: block;
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background-color: #CBD5E1;
-            border-radius: 10px;
-        }
-        .member-checkbox input:checked + div {
-            background-color: #3B7AAE;
-            color: white;
-            border-color: #3B7AAE;
-        }
+        .custom-scrollbar::-webkit-scrollbar { display: block; width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #CBD5E1; border-radius: 10px; }
+        .member-checkbox input:checked + div { background-color: #3B7AAE; color: white; border-color: #3B7AAE; }
     </style>
 </head>
 <body class="text-gray-700 antialiased relative pb-28">
@@ -82,12 +69,13 @@
         </header>
 
         <main class="max-w-md mx-auto px-4">
+            
             <section id="day1" class="mb-10">
                 <div class="flex items-center mb-4 pl-2">
                     <span class="bg-fuji-blue text-white text-xs font-bold px-3 py-1 rounded-full mr-2">Day 1</span>
                     <h2 class="text-xl font-bold text-gray-800">文化與美食巡禮</h2>
                 </div>
-                
+
                 <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
                     <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
                     <div class="flex justify-between items-start mb-3 pl-3">
@@ -100,7 +88,7 @@
                     </div>
                     <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
                         <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>租借韓服可以免費入場！建議走到光化門正中央，利用兩側的守衛當作前景，拍出穿越時空的感覺。</p>
-                        <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>景福宮設有地下停車場（前兩小時3000韓元）。</p>
+                        <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>景福宮設有地下停車場（前兩小時3000韓元），附近鐘路區有加油站但價格偏高，建議在外圍加滿。</p>
                     </div>
                 </div>
 
@@ -116,7 +104,16 @@
                     </div>
                     <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
                         <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>剛上桌時雞湯還在滾！準備好錄影模式，捕捉湯汁沸騰和撒上蔥花的瞬間最誘人。</p>
-                        <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>餐廳提供專屬停車場（用餐免費1小時）。</p>
+                        <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>餐廳提供專屬停車場（用餐免費1小時），位置不多，建議從景福宮步行前往最佳。</p>
+                    </div>
+                </div>
+
+                <div class="bg-fuji-blue/10 rounded-3xl p-4 border border-fuji-blue/20 flex items-start gap-3">
+                    <div class="text-2xl text-fuji-blue mt-1">✨</div>
+                    <div class="text-sm w-full">
+                        <p class="font-bold text-fuji-blue mb-1">Day 1 導遊貼心提醒</p>
+                        <p class="mb-1">👗 <strong>建議穿著：</strong>由於有韓服體驗與大量步行，請穿著好穿脫的上衣與極舒適的平底鞋。</p>
+                        <p>☀️ <strong>天氣提示：</strong>首爾春季早晚溫差大，白天約 20°C 晴朗微風，記得帶件薄外套防風。</p>
                     </div>
                 </div>
             </section>
@@ -126,6 +123,7 @@
                     <span class="bg-fuji-blue text-white text-xs font-bold px-3 py-1 rounded-full mr-2">Day 2</span>
                     <h2 class="text-xl font-bold text-gray-800">浪漫與購物狂歡</h2>
                 </div>
+
                 <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
                     <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
                     <div class="flex justify-between items-start mb-3 pl-3">
@@ -138,7 +136,16 @@
                     </div>
                     <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
                         <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>傍晚時分拍攝街道兩側亮起的霓虹招牌與街頭小吃攤，能拍出最具韓國街頭感的氛圍。</p>
-                        <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>明洞商圈內部為行人徒步區，車輛無法進入。建議停在鄰近的新世界百貨。</p>
+                        <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>明洞商圈內部為行人徒步區，車輛無法進入。建議停在鄰近的新世界百貨（若有消費可折抵）。</p>
+                    </div>
+                </div>
+
+                <div class="bg-fuji-blue/10 rounded-3xl p-4 border border-fuji-blue/20 flex items-start gap-3">
+                    <div class="text-2xl text-fuji-blue mt-1">✨</div>
+                    <div class="text-sm w-full">
+                        <p class="font-bold text-fuji-blue mb-1">Day 2 導遊貼心提醒</p>
+                        <p class="mb-1">👗 <strong>建議穿著：</strong>血拼日！建議穿著輕便休閒服裝，背個容量大且輕的帆布包或雙肩包最方便。</p>
+                        <p>☀️ <strong>天氣提示：</strong>全日晴朗，約 22°C。室內外進出頻繁，洋蔥式穿搭尤佳，請注意防曬。</p>
                     </div>
                 </div>
             </section>
@@ -245,92 +252,51 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // 🛠️ 只需要在這裡換上你的 Firebase 金鑰即可：
+        // 🛠️ 請在此處替換成您的真實 Firebase 密鑰：
         const firebaseConfig = {
-  apiKey: "AIzaSyCtegjir2t3FntkSMoXb738u2JqYTUw810",
-  authDomain: "korea-441ae.firebaseapp.com",
-  projectId: "korea-441ae",
-  storageBucket: "korea-441ae.firebasestorage.app",
-  messagingSenderId: "340418388300",
-  appId: "1:340418388300:web:9019a1790d5fda07e22fe9",
-  measurementId: "G-BMYJY0TFTK"
-};
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const docRef = doc(db, "korea_trip", "current_status");
+            apiKey: "AIzaSyCtegjir2t3FntkSMoXb738u2JqYTUw810",
+            authDomain: "korea-441ae.firebaseapp.com",
+            projectId: "korea-441ae",
+            storageBucket: "korea-441ae.firebasestorage.app",
+            messagingSenderId: "340418388300",
+            appId: "1:340418388300:web:9019a1790d5fda07e22fe9",
+            measurementId: "G-BMYJY0TFTK"
+        };
 
         const members = ["Amber", "Enzo", "Leon", "維尼", "冠妤"];
         window.expenseRecords = [];
-        window.isEditing = false; // 防止即時同步時打斷使用者正在編輯的輸入
+        window.isEditing = false; 
 
-        // 監聽 Firebase 雲端資料庫進行即時全體同步 (onSnapshot)
-        onSnapshot(docRef, (docSnap) => {
-            if (docSnap.exists()) {
-                const cloudData = docSnap.data();
-                if (cloudData.htmlData && !window.isEditing) {
-                    document.getElementById('editable-wrapper').innerHTML = cloudData.htmlData;
-                }
-                if (cloudData.expenses) {
-                    window.expenseRecords = cloudData.expenses;
-                    // 如果目前切換在明細頁，就重刷畫面
-                    if (!document.getElementById('tabList').classList.contains('hidden')) {
-                        window.renderSettlement();
+        let db, docRef;
+        let isFirebaseReady = false;
+
+        try {
+            if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                docRef = doc(db, "korea_trip", "current_status");
+                isFirebaseReady = true;
+
+                onSnapshot(docRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        const cloudData = docSnap.data();
+                        if (cloudData.htmlData && !window.isEditing) {
+                            document.getElementById('editable-wrapper').innerHTML = cloudData.htmlData;
+                        }
+                        if (cloudData.expenses) {
+                            window.expenseRecords = cloudData.expenses;
+                            if (!document.getElementById('tabList').classList.contains('hidden')) {
+                                window.renderSettlement();
+                            }
+                        }
                     }
-                }
-            }
-        }, (error) => {
-            console.error("雲端資料連線失敗: ", error);
-        });
-
-        /* ================= 密碼線上編輯模組 (1441) ================= */
-        window.requestEdit = function() {
-            if (prompt("🔒 請輸入編輯密碼：") === "1441") {
-                window.isEditing = true;
-                document.getElementById('editBtn').classList.add('hidden');
-                document.getElementById('saveBtn').classList.remove('hidden');
-                document.querySelectorAll('#editable-wrapper h1 span, #editable-wrapper h2, #editable-wrapper h3, #editable-wrapper p, #editable-wrapper span.rounded-full, #editable-wrapper span.rounded-md').forEach(el => {
-                    if (!el.querySelector('i')) el.setAttribute('contenteditable', 'true');
                 });
-                alert("✨ 已進入雲端編輯模式！直接點選文字即可修改。修改後請務必點擊右上角「綠色打勾」同步給所有人。");
-            } else { alert("❌ 密碼錯誤！"); }
-        }
-
-        window.saveEdit = async function() {
-            document.querySelectorAll('[contenteditable="true"]').forEach(el => el.removeAttribute('contenteditable'));
-            const currentHtml = document.getElementById('editable-wrapper').innerHTML;
-            
-            try {
-                // 將修改後的 HTML 寫回雲端
-                await setDoc(docRef, { htmlData: currentHtml }, { merge: true });
-                window.isEditing = false;
-                document.getElementById('saveBtn').classList.add('hidden');
-                document.getElementById('editBtn').classList.remove('hidden');
-                alert("✅ 修改成功！所有人將會即時看到最新行程！");
-            } catch (err) {
-                alert("儲存失敗，請確認 Firebase Rules 規則是否開放。");
             }
+        } catch (error) {
+            console.warn("Firebase 連線提示：目前正在無金鑰的測試模式下運行。");
         }
 
-        /* ================= 雲端智能記帳分帳功能 ================= */
-        window.initMemberCheckboxes = function() {
-            const container = document.getElementById('memberCheckboxes');
-            container.innerHTML = '';
-            members.forEach(m => {
-                container.innerHTML += `
-                    <label class="member-checkbox cursor-pointer relative">
-                        <input type="checkbox" value="${m}" checked class="peer sr-only" onchange="calculateSplit()">
-                        <div class="px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200 text-gray-500 bg-gray-50 transition peer-checked:bg-fuji-blue peer-checked:text-white peer-checked:border-fuji-blue">
-                            ${m}
-                        </div>
-                    </label>
-                `;
-            });
-        }
-
-        window.getSelectedMembers = function() {
-            return Array.from(document.querySelectorAll('#memberCheckboxes input:checked')).map(cb => cb.value);
-        }
-
+        /* ================= 核心 UI 按鈕功能綁定 ================= */
         window.toggleModal = function(show) {
             const modal = document.getElementById('accountingModal');
             if (show) {
@@ -355,6 +321,25 @@
             }
         }
 
+        window.initMemberCheckboxes = function() {
+            const container = document.getElementById('memberCheckboxes');
+            container.innerHTML = '';
+            members.forEach(m => {
+                container.innerHTML += `
+                    <label class="member-checkbox cursor-pointer relative">
+                        <input type="checkbox" value="${m}" checked class="peer sr-only" onchange="calculateSplit()">
+                        <div class="px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200 text-gray-500 bg-gray-50 transition peer-checked:bg-fuji-blue peer-checked:text-white peer-checked:border-fuji-blue">
+                            ${m}
+                        </div>
+                    </label>
+                `;
+            });
+        }
+
+        window.getSelectedMembers = function() {
+            return Array.from(document.querySelectorAll('#memberCheckboxes input:checked')).map(cb => cb.value);
+        }
+
         window.calculateSplit = function() {
             const amount = parseFloat(document.getElementById('expenseAmount').value) || 0;
             const currency = document.getElementById('currencyType').value;
@@ -376,44 +361,41 @@
             if (data.involved.length === 0) { alert('⚠️ 至少要選擇一位分帳成員喔！'); return; }
             
             const record = {
-                id: Date.now(),
-                item: data.item,
-                amount: data.amount,
-                currency: data.currency,
-                twdTotal: data.twdTotal,
-                payer: document.getElementById('payerName').value,
-                involved: data.involved
+                id: Date.now(), item: data.item, amount: data.amount, currency: data.currency,
+                twdTotal: data.twdTotal, payer: document.getElementById('payerName').value, involved: data.involved
             };
             
             window.expenseRecords.push(record);
             
-            // 同步覆蓋雲端陣列
-            await setDoc(docRef, { expenses: window.expenseRecords }, { merge: true });
+            if (isFirebaseReady) {
+                await setDoc(docRef, { expenses: window.expenseRecords }, { merge: true });
+                alert('✅ 記帳完成！已同步至雲端。');
+            } else {
+                alert('提示：目前處於測試模式，資料暫存於網頁中。換上真實 Firebase 金鑰後即可永久雲端儲存！');
+            }
             
             document.getElementById('expenseItem').value = '';
             document.getElementById('expenseAmount').value = '';
             document.querySelectorAll('#memberCheckboxes input').forEach(cb => cb.checked = true);
             window.calculateSplit();
-            alert('✅ 記帳完成！已即時雲端發布。');
         }
 
         window.deleteExpense = async function(id) {
-            if(confirm("確定要刪除這筆雲端紀錄嗎？")) {
+            if(confirm("確定要刪除這筆紀錄嗎？")) {
                 window.expenseRecords = window.expenseRecords.filter(r => r.id !== id);
-                await setDoc(docRef, { expenses: window.expenseRecords }, { merge: true });
+                if (isFirebaseReady) await setDoc(docRef, { expenses: window.expenseRecords }, { merge: true });
                 window.renderSettlement();
             }
         }
 
         window.clearAllExpenses = async function() {
-            if(confirm("🚨 警告：這會清空全體團員在雲端上「所有人」的明細，確定嗎？")) {
+            if(confirm("🚨 警告：確定要清空所有的記帳明細嗎？")) {
                 window.expenseRecords = [];
-                await setDoc(docRef, { expenses: window.expenseRecords }, { merge: true });
+                if (isFirebaseReady) await setDoc(docRef, { expenses: window.expenseRecords }, { merge: true });
                 window.renderSettlement();
             }
         }
 
-        // 精準多對多結算矩陣演算法
         window.renderSettlement = function() {
             const listContainer = document.getElementById('expenseListContainer');
             const resultContainer = document.getElementById('settlementResults');
@@ -433,7 +415,6 @@
             window.expenseRecords.forEach(record => {
                 totalTwd += record.twdTotal;
                 paidMap[record.payer] += record.twdTotal;
-                
                 const inv = record.involved || members;
                 const exactPerPerson = record.twdTotal / inv.length;
                 inv.forEach(m => { shouldPayMap[m] += exactPerPerson; });
@@ -459,7 +440,8 @@
             members.forEach(m => { balances[m] = paidMap[m] - shouldPayMap[m]; });
 
             let debtors = members.filter(m => balances[m] < -0.5).map(m => ({name: m, amount: Math.abs(balances[m])}));
-            let creditors = members.filter(m => balances[m] > 0.5).map(m => ({name: m, amount: balances[m];}));
+            let creditors = members.filter(m => balances[m] > 0.5).map(m => ({name: m, amount: balances[m]}));
+            
             let transactions = [];
             let i = 0, j = 0;
 
@@ -512,6 +494,32 @@
                 document.getElementById('copySuccessMsg').classList.remove('hidden');
                 setTimeout(() => document.getElementById('copySuccessMsg').classList.add('hidden'), 3000);
             });
+        }
+
+        window.requestEdit = function() {
+            if (prompt("🔒 請輸入編輯密碼：") === "1441") {
+                window.isEditing = true;
+                document.getElementById('editBtn').classList.add('hidden');
+                document.getElementById('saveBtn').classList.remove('hidden');
+                document.querySelectorAll('#editable-wrapper h1 span, #editable-wrapper h2, #editable-wrapper h3, #editable-wrapper p, #editable-wrapper span.rounded-full, #editable-wrapper span.rounded-md').forEach(el => {
+                    if (!el.querySelector('i')) el.setAttribute('contenteditable', 'true');
+                });
+                alert("✨ 已進入雲端編輯模式！直接點選文字即可修改。修改後請務必點擊右上角「綠色打勾」同步給所有人。");
+            } else { alert("❌ 密碼錯誤！"); }
+        }
+
+        window.saveEdit = async function() {
+            document.querySelectorAll('[contenteditable="true"]').forEach(el => el.removeAttribute('contenteditable'));
+            const currentHtml = document.getElementById('editable-wrapper').innerHTML;
+            if(isFirebaseReady) {
+                await setDoc(docRef, { htmlData: currentHtml }, { merge: true });
+                alert("✅ 修改成功！所有人將會即時看到最新行程！");
+            } else {
+                alert("提示：沒有 Firebase 金鑰，修改僅會保留在當前網頁狀態喔！");
+            }
+            window.isEditing = false;
+            document.getElementById('saveBtn').classList.add('hidden');
+            document.getElementById('editBtn').classList.remove('hidden');
         }
 
         window.initMemberCheckboxes();
