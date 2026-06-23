@@ -1,10 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的韓國小旅行 🇰🇷</title>
+    <title>我的韓國小旅行 🇰🇷 (智能記帳終極版 - 支援不平分)</title>
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -24,7 +27,6 @@
         }
     </script>
     <style>
-        /* 韓式可愛點點風格背景 */
         body {
             background-color: #F9FAFB;
             background-image: radial-gradient(#D1D5DB 2px, transparent 2px);
@@ -32,155 +34,700 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
         }
-        
-        /* 隱藏滾動條但保持可滾動 */
-        ::-webkit-scrollbar {
-            display: none;
-        }
-        
-        /* 底部導航浮動動畫 */
+        ::-webkit-scrollbar { display: none; }
         .bottom-nav {
             backdrop-filter: blur(10px);
             background-color: rgba(255, 255, 255, 0.9);
+        }
+        [contenteditable="true"] {
+            outline: 2px dashed #3B7AAE;
+            outline-offset: 4px;
+            border-radius: 4px;
+            background-color: rgba(59, 122, 174, 0.05);
+            transition: all 0.2s;
+            cursor: text;
+        }
+        [contenteditable="true"]:focus {
+            outline-style: solid;
+            background-color: rgba(59, 122, 174, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar { display: block; width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #CBD5E1; border-radius: 10px; }
+        
+        /* 隱藏預設checkbox，使用自訂樣式 */
+        input[type="checkbox"]:checked + div {
+            background-color: #3B7AAE;
+            color: white;
+            border-color: #3B7AAE;
         }
     </style>
 </head>
 <body class="text-gray-700 antialiased relative pb-28">
 
-    <header class="pt-12 pb-8 px-6 text-center">
-        <h1 class="text-3xl font-bold text-fuji-blue mb-2"><i class="fa-solid fa-plane-departure mr-2"></i>首爾療癒小旅行</h1>
-        <p class="text-sm text-text-gray font-medium bg-white inline-block px-4 py-1 rounded-full shadow-sm">2026.05 Trip Itinerary</p>
-    </header>
+    <!-- 頂部功能列 (編輯按鈕) -->
+    <div class="fixed top-4 right-4 z-40">
+        <button id="editBtn" onclick="requestEdit()" class="bg-white text-fuji-blue shadow-md p-3 rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-50 transition border border-gray-100">
+            <i class="fa-solid fa-pen-to-square text-lg"></i>
+        </button>
+        <button id="saveBtn" onclick="saveEdit()" class="bg-[#06C755] text-white shadow-md p-3 rounded-full w-12 h-12 flex items-center justify-center hover:bg-[#05b34c] transition hidden border border-transparent">
+            <i class="fa-solid fa-check text-xl"></i>
+        </button>
+    </div>
 
-    <main class="max-w-md mx-auto px-4">
+    <!-- 核心內容區塊 -->
+    <div id="editable-wrapper">
+        <header class="pt-12 pb-8 px-6 text-center">
+            <h1 class="text-3xl font-bold text-fuji-blue mb-2"><i class="fa-solid fa-plane-departure mr-2"></i><span>首爾療癒小旅行</span></h1>
+            <p class="text-sm text-text-gray font-medium bg-white inline-block px-4 py-1 rounded-full shadow-sm">2026.05 Trip Itinerary</p>
+        </header>
 
-        <section id="day1" class="mb-10">
-            <div class="flex items-center mb-4 pl-2">
-                <span class="bg-fuji-blue text-white text-xs font-bold px-3 py-1 rounded-full mr-2">Day 1</span>
-                <h2 class="text-xl font-bold text-gray-800">文化與美食巡禮</h2>
+        <main class="max-w-md mx-auto px-4">
+            <!-- Day 1 -->
+            <section id="day1" class="mb-10">
+                <div class="flex items-center mb-4 pl-2">
+                    <span class="bg-fuji-blue text-white text-xs font-bold px-3 py-1 rounded-full mr-2">Day 1</span>
+                    <h2 class="text-xl font-bold text-gray-800">文化與美食巡禮</h2>
+                </div>
+                <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
+                    <div class="flex justify-between items-start mb-3 pl-3">
+                        <h3 class="text-lg font-bold text-gray-800">景福宮</h3>
+                        <span class="bg-orange-100 text-orange-600 text-xs font-bold px-2 py-1 rounded-md"><i class="fa-solid fa-landmark mr-1"></i>景點</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4 pl-3">
+                        <span class="text-xs bg-pink-50 text-pink-500 px-2 py-1 rounded-full">#必拍</span>
+                        <span class="text-xs bg-blue-50 text-blue-500 px-2 py-1 rounded-full">#韓服體驗</span>
+                    </div>
+                    <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
+                        <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>租借韓服可以免費入場！建議走到光化門正中央，利用兩側的守衛當作前景，拍出穿越時空的感覺。</p>
+                        <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>景福宮設有地下停車場（前兩小時3000韓元）。</p>
+                    </div>
+                </div>
+                <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
+                    <div class="flex justify-between items-start mb-3 pl-3">
+                        <h3 class="text-lg font-bold text-gray-800">土俗村蔘雞湯</h3>
+                        <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-md"><i class="fa-solid fa-utensils mr-1"></i>食物</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4 pl-3">
+                        <span class="text-xs bg-red-50 text-red-500 px-2 py-1 rounded-full">#必吃</span>
+                        <span class="text-xs bg-yellow-50 text-yellow-600 px-2 py-1 rounded-full">#排隊名店</span>
+                    </div>
+                    <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
+                        <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>剛上桌時雞湯還在滾！準備好錄影模式，捕捉湯汁沸騰瞬間。</p>
+                        <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>餐廳提供專屬停車場（用餐免費1小時）。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Day 2 -->
+            <section id="day2" class="mb-4">
+                <div class="flex items-center mb-4 pl-2">
+                    <span class="bg-fuji-blue text-white text-xs font-bold px-3 py-1 rounded-full mr-2">Day 2</span>
+                    <h2 class="text-xl font-bold text-gray-800">浪漫與購物狂歡</h2>
+                </div>
+                <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
+                    <div class="flex justify-between items-start mb-3 pl-3">
+                        <h3 class="text-lg font-bold text-gray-800">明洞商圈</h3>
+                        <span class="bg-purple-100 text-purple-600 text-xs font-bold px-2 py-1 rounded-md"><i class="fa-solid fa-bag-shopping mr-1"></i>購物</span>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-4 pl-3">
+                        <span class="text-xs bg-purple-50 text-purple-500 px-2 py-1 rounded-full">#必買</span>
+                        <span class="text-xs bg-green-50 text-green-600 px-2 py-1 rounded-full">#美妝保養</span>
+                    </div>
+                    <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
+                        <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>傍晚時分拍攝街道兩側亮起的霓虹招牌與街頭小吃攤。</p>
+                        <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>明洞商圈為行人徒步區，建議停在新世界百貨。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 記帳與結算彈出視窗 (Modal) -->
+    <div id="accountingModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4 transition-all duration-300">
+        <div class="bg-white w-full max-w-sm rounded-4xl p-5 shadow-xl border border-gray-100 relative h-[85vh] flex flex-col">
+            <!-- 關閉按鈕 -->
+            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 z-10 bg-white rounded-full w-8 h-8 flex items-center justify-center shadow-sm">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="text-center mb-3 pt-2">
+                <h3 class="text-xl font-bold text-fuji-blue mt-1">💸 旅費智能管家</h3>
             </div>
 
-            <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
+            <!-- 雙頁籤切換器 -->
+            <div class="flex bg-gray-100 rounded-xl p-1 mb-4 shrink-0">
+                <button id="tabBtnAdd" onclick="switchTab('add')" class="flex-1 py-1.5 text-sm font-bold bg-white text-fuji-blue rounded-lg shadow-sm transition">✍️ 新增消費</button>
+                <button id="tabBtnList" onclick="switchTab('list')" class="flex-1 py-1.5 text-sm font-bold text-gray-500 hover:text-fuji-blue transition">🧾 明細與結算</button>
+            </div>
+
+            <!-- ================== 頁籤 1: 新增消費 ================== -->
+            <div id="tabAdd" class="flex-1 overflow-y-auto custom-scrollbar pr-1 space-y-3 pb-2">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 mb-1">🛍️ 消費項目</label>
+                    <input type="text" id="expenseItem" placeholder="例如：下午茶、炸雞" class="w-full bg-warm-gray rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-fuji-blue/50">
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <div class="col-span-2">
+                        <label class="block text-xs font-bold text-gray-500 mb-1">💰 消費金額</label>
+                        <input type="number" id="expenseAmount" placeholder="輸入數字" oninput="calculateSplit()" class="w-full bg-warm-gray rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-fuji-blue/50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-500 mb-1">💱 幣別</label>
+                        <select id="currencyType" onchange="calculateSplit()" class="w-full bg-warm-gray rounded-xl px-2 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-fuji-blue/50 font-medium">
+                            <option value="KRW">韓元 🇰🇷</option>
+                            <option value="TWD">台幣 🇹🇼</option>
+                        </select>
+                    </div>
+                </div>
                 
-                <div class="flex justify-between items-start mb-3 pl-3">
-                    <h3 class="text-lg font-bold text-gray-800">景福宮</h3>
-                    <span class="bg-orange-100 text-orange-600 text-xs font-bold px-2 py-1 rounded-md"><i class="fa-solid fa-landmark mr-1"></i>景點</span>
+                <div class="flex justify-between items-center gap-2">
+                    <div class="flex items-center text-xs text-gray-500 bg-fuji-blue/5 px-2 py-1.5 rounded-lg border border-fuji-blue/10">
+                        <span class="mr-1">1台幣=</span>
+                        <input type="number" id="exchangeRate" value="42" oninput="calculateSplit()" class="w-10 bg-white rounded text-center focus:outline-none text-fuji-blue font-bold">
+                        <span class="ml-1">韓元</span>
+                    </div>
+                    <div class="text-right text-xs">
+                        <span class="text-gray-400">總台幣：</span>
+                        <span id="convertedTotal" class="font-bold text-fuji-blue">NT$ 0</span>
+                    </div>
                 </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 mb-1">👤 誰負責墊錢？</label>
+                    <select id="payerName" class="w-full bg-warm-gray rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-fuji-blue/50">
+                        <option value="Amber">Amber</option>
+                        <option value="Enzo">Enzo</option>
+                        <option value="Leon">Leon</option>
+                        <option value="維尼">維尼</option>
+                        <option value="冠妤">冠妤</option>
+                    </select>
+                </div>
+
+                <!-- 新增：自訂分帳成員 -->
+                <div class="bg-gray-50 p-3 rounded-2xl border border-gray-100">
+                    <label class="block text-xs font-bold text-gray-500 mb-2">👥 誰要一起分這筆錢？ (預設全選)</label>
+                    <div class="flex flex-wrap gap-2" id="splittersGroup">
+                        <!-- JS 動態產生 Checkbox -->
+                    </div>
+                </div>
+
+                <!-- 試算預覽 -->
+                <div class="bg-warm-gray rounded-2xl p-3">
+                    <p class="text-xs font-bold text-gray-500 mb-1"><i class="fa-solid fa-calculator mr-1"></i>即時試算預覽</p>
+                    <p class="text-sm text-gray-700 font-bold">目前 <span id="splitCount" class="text-fuji-blue text-base">5</span> 人分攤，每人：<span id="previewPerPerson" class="text-emerald-600 text-base ml-1">NT$ 0</span></p>
+                </div>
+
+                <button onclick="saveExpenseRecord()" class="w-full bg-fuji-blue hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl text-sm transition shadow-sm mt-2 flex justify-center items-center gap-2">
+                    <i class="fa-solid fa-download"></i> 儲存這筆帳單
+                </button>
+            </div>
+
+            <!-- ================== 頁籤 2: 明細與結算 ================== -->
+            <div id="tabList" class="hidden flex-1 overflow-y-auto custom-scrollbar pr-1 flex flex-col gap-4 pb-2">
                 
-                <div class="flex gap-2 mb-4 pl-3">
-                    <span class="text-xs bg-pink-50 text-pink-500 px-2 py-1 rounded-full">#必拍</span>
-                    <span class="text-xs bg-blue-50 text-blue-500 px-2 py-1 rounded-full">#韓服體驗</span>
+                <div>
+                    <h4 class="text-xs font-bold text-gray-500 mb-2 border-b pb-1"><i class="fa-solid fa-list-ul mr-1"></i>所有消費明細</h4>
+                    <div id="expenseListContainer" class="space-y-2 text-sm">
+                        <!-- JS 動態產生明細 -->
+                    </div>
                 </div>
 
-                <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
-                    <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>租借韓服可以免費入場！建議走到光化門正中央，利用兩側的守衛當作前景，拍出穿越時空的感覺。</p>
-                    <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>景福宮設有地下停車場（前兩小時3000韓元），附近鐘路區有加油站但價格偏高，建議在外圍加滿。</p>
+                <!-- 最終結算區塊 -->
+                <div class="bg-blue-50 rounded-2xl p-4 border border-blue-100">
+                    <h4 class="text-sm font-bold text-fuji-blue mb-2"><i class="fa-solid fa-scale-balanced mr-1"></i>終極對帳單</h4>
+                    <div class="flex justify-between text-xs text-gray-600 mb-2 border-b border-blue-200 pb-2">
+                        <span>團隊總花費：</span><span id="finalTotalCost" class="font-bold text-gray-800">NT$ 0</span>
+                    </div>
+                    
+                    <h5 class="text-xs font-bold text-gray-500 mb-1">💸 誰該給誰多少錢？</h5>
+                    <div id="settlementResults" class="bg-white rounded-xl p-3 text-sm space-y-2 shadow-sm border border-gray-100">
+                        <!-- JS 動態產生結算結果 -->
+                    </div>
+
+                    <h5 class="text-xs font-bold text-gray-500 mt-3 mb-1">📊 個人應付總額參考</h5>
+                    <div id="personalTotalContainer" class="text-xs text-gray-600 space-y-1">
+                        <!-- JS 動態產生個人花費 -->
+                    </div>
                 </div>
+
+                <button onclick="copySettlementToLine()" class="w-full bg-[#06C755] hover:bg-[#05b34c] text-white font-bold py-3 px-4 rounded-xl text-sm transition shadow-sm flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-line text-lg"></i> 複製【總結算報表】給大家
+                </button>
+                <button onclick="clearAllExpenses()" class="w-full text-red-400 hover:text-red-600 text-xs py-2 transition underline">
+                    ⚠️ 清空所有記帳資料
+                </button>
             </div>
+            
+            <p id="copySuccessMsg" class="text-center text-xs text-emerald-600 font-bold hidden pb-2">✨ 已成功複製到剪貼簿！</p>
+        </div>
+    </div>
 
-            <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
-                
-                <div class="flex justify-between items-start mb-3 pl-3">
-                    <h3 class="text-lg font-bold text-gray-800">土俗村蔘雞湯</h3>
-                    <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-md"><i class="fa-solid fa-utensils mr-1"></i>食物</span>
-                </div>
-                
-                <div class="flex gap-2 mb-4 pl-3">
-                    <span class="text-xs bg-red-50 text-red-500 px-2 py-1 rounded-full">#必吃</span>
-                    <span class="text-xs bg-yellow-50 text-yellow-600 px-2 py-1 rounded-full">#排隊名店</span>
-                </div>
-
-                <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
-                    <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>剛上桌時雞湯還在滾！準備好錄影模式，捕捉湯汁沸騰和撒上蔥花的瞬間最誘人。</p>
-                    <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>餐廳提供專屬停車場（用餐免費1小時），位置不多，建議從景福宮步行前往最佳。</p>
-                </div>
-            </div>
-
-            <div class="bg-fuji-blue/10 rounded-3xl p-4 border border-fuji-blue/20 flex items-start gap-3">
-                <div class="text-2xl text-fuji-blue mt-1">✨</div>
-                <div class="text-sm">
-                    <p class="font-bold text-fuji-blue mb-1">Day 1 導遊貼心提醒</p>
-                    <p class="mb-1">👗 <strong>建議穿著：</strong>由於有韓服體驗與大量步行，請穿著好穿脫的上衣與極舒適的平底鞋。</p>
-                    <p>☀️ <strong>天氣提示：</strong>首爾春季早晚溫差大，白天約 20°C 晴朗微風，記得帶件薄外套防風。</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="day2" class="mb-4">
-            <div class="flex items-center mb-4 pl-2">
-                <span class="bg-fuji-blue text-white text-xs font-bold px-3 py-1 rounded-full mr-2">Day 2</span>
-                <h2 class="text-xl font-bold text-gray-800">浪漫與購物狂歡</h2>
-            </div>
-
-            <div class="bg-snow-white rounded-4xl p-5 mb-5 shadow-sm border border-gray-100 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-2 h-full bg-fuji-blue opacity-80"></div>
-                
-                <div class="flex justify-between items-start mb-3 pl-3">
-                    <h3 class="text-lg font-bold text-gray-800">明洞商圈</h3>
-                    <span class="bg-purple-100 text-purple-600 text-xs font-bold px-2 py-1 rounded-md"><i class="fa-solid fa-bag-shopping mr-1"></i>購物</span>
-                </div>
-                
-                <div class="flex gap-2 mb-4 pl-3">
-                    <span class="text-xs bg-purple-50 text-purple-500 px-2 py-1 rounded-full">#必買</span>
-                    <span class="text-xs bg-green-50 text-green-600 px-2 py-1 rounded-full">#美妝保養</span>
-                </div>
-
-                <div class="bg-warm-gray rounded-2xl p-4 text-sm text-text-gray pl-4 ml-3">
-                    <p class="mb-2"><span class="font-bold text-fuji-blue">💡 拍照小技巧：</span>傍晚時分拍攝街道兩側亮起的霓虹招牌與街頭小吃攤，能拍出最具韓國街頭感的氛圍。</p>
-                    <p><span class="font-bold text-fuji-blue">🚗 停車＆加油：</span>明洞商圈內部為行人徒步區，車輛無法進入。建議停在鄰近的新世界百貨（若有消費可折抵）。</p>
-                </div>
-            </div>
-
-            <div class="bg-fuji-blue/10 rounded-3xl p-4 border border-fuji-blue/20 flex items-start gap-3">
-                <div class="text-2xl text-fuji-blue mt-1">✨</div>
-                <div class="text-sm">
-                    <p class="font-bold text-fuji-blue mb-1">Day 2 導遊貼心提醒</p>
-                    <p class="mb-1">👗 <strong>建議穿著：</strong>血拼日！建議穿著輕便休閒服裝，背個容量大且輕的帆布包或雙肩包最方便。</p>
-                    <p>☀️ <strong>天氣提示：</strong>全日晴朗，約 22°C。室內外進出頻繁，洋蔥式穿搭尤佳，請注意防曬。</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <nav class="bottom-nav fixed bottom-6 left-1/2 transform -translate-x-1/2 w-11/12 max-w-sm rounded-full shadow-lg border border-gray-100 px-6 py-3 flex justify-between items-center z-50">
+    <!-- 底部浮動導覽條 -->
+    <nav class="bottom-nav fixed bottom-6 left-1/2 transform -translate-x-1/2 w-11/12 max-w-sm rounded-full shadow-lg border border-gray-100 px-6 py-3 flex justify-between items-center z-40">
         <a href="#day1" class="flex flex-col items-center text-fuji-blue hover:text-blue-800 transition">
-            <i class="fa-regular fa-calendar text-xl mb-1"></i>
-            <span class="text-[10px] font-bold">Day 1</span>
+            <i class="fa-regular fa-calendar text-xl mb-1"></i><span class="text-[10px] font-bold">Day 1</span>
         </a>
-        <a href="#" class="flex flex-col items-center text-fuji-blue hover:text-blue-800 transition -mt-5 bg-white rounded-full p-3 shadow-md border border-gray-50">
-            <i class="fa-solid fa-house text-2xl"></i>
-        </a>
+        <button onclick="toggleModal(true)" class="flex flex-col items-center text-white bg-fuji-blue hover:bg-blue-700 transition -mt-6 rounded-full p-3.5 shadow-md border-4 border-white transform hover:scale-105 active:scale-95">
+            <i class="fa-solid fa-wallet text-xl"></i>
+        </button>
         <a href="#day2" class="flex flex-col items-center text-gray-400 hover:text-fuji-blue transition">
-            <i class="fa-solid fa-map-location-dot text-xl mb-1"></i>
-            <span class="text-[10px] font-bold">Day 2</span>
+            <i class="fa-solid fa-map-location-dot text-xl mb-1"></i><span class="text-[10px] font-bold">Day 2</span>
         </a>
     </nav>
 
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                // 更新導航顏色狀態
-                document.querySelectorAll('.bottom-nav a').forEach(a => {
-                    if(!a.classList.contains('-mt-5')) { // 排除首頁按鈕
-                        a.classList.remove('text-fuji-blue');
-                        a.classList.add('text-gray-400');
-                    }
+        /* ================= 編輯模式邏輯 ================= */
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedData = localStorage.getItem('korea_trip_data');
+            if (savedData) document.getElementById('editable-wrapper').innerHTML = savedData;
+            
+            initCheckboxes(); // 初始化分帳成員勾選框
+            loadExpenses();   // 載入記帳資料
+        });
+
+        function requestEdit() {
+            if (prompt("🔒 請輸入編輯密碼：") === "1441") {
+                document.getElementById('editBtn').classList.add('hidden');
+                document.getElementById('saveBtn').classList.remove('hidden');
+                document.querySelectorAll('#editable-wrapper h1 span, #editable-wrapper h2, #editable-wrapper h3, #editable-wrapper p, #editable-wrapper span.rounded-full, #editable-wrapper span.rounded-md').forEach(el => {
+                    if (!el.querySelector('i')) el.setAttribute('contenteditable', 'true');
                 });
-                if(!this.classList.contains('-mt-5')) {
-                    this.classList.remove('text-gray-400');
-                    this.classList.add('text-fuji-blue');
+                alert("✨ 已進入編輯模式！");
+            } else { alert("❌ 密碼錯誤！"); }
+        }
+
+        function saveEdit() {
+            document.querySelectorAll('[contenteditable="true"]').forEach(el => el.removeAttribute('contenteditable'));
+            localStorage.setItem('korea_trip_data', document.getElementById('editable-wrapper').innerHTML);
+            document.getElementById('saveBtn').classList.add('hidden');
+            document.getElementById('editBtn').classList.remove('hidden');
+            alert("✅ 修改已成功儲存！");
+        }
+
+        /* ================= 記帳核心功能 ================= */
+        const members = ["Amber", "Enzo", "Leon", "維尼", "冠妤"];
+        let expenseRecords = [];
+
+        // 產生核取方塊
+        function initCheckboxes() {
+            const container = document.getElementById('splittersGroup');
+            container.innerHTML = members.map(m => `
+                <label class="cursor-pointer">
+                    <input type="checkbox" value="${m}" checked class="hidden" onchange="calculateSplit()">
+                    <div class="px-3 py-1.5 rounded-lg border border-gray-200 text-xs text-gray-500 transition-colors select-none">
+                        ${m}
+                    </div>
+                </label>
+            `).join('');
+        }
+
+        function toggleModal(show) {
+            const modal = document.getElementById('accountingModal');
+            if (show) {
+                modal.classList.remove('hidden'); modal.classList.add('flex');
+            } else {
+                modal.classList.remove('flex'); modal.classList.add('hidden');
+                document.getElementById('copySuccessMsg').classList.add('hidden');
+            }
+        }
+
+        function switchTab(tabName) {
+            const btnAdd = document.getElementById('tabBtnAdd'), btnList = document.getElementById('tabBtnList');
+            const tabAdd = document.getElementById('tabAdd'), tabList = document.getElementById('tabList');
+
+            if (tabName === 'add') {
+                btnAdd.className = "flex-1 py-1.5 text-sm font-bold bg-white text-fuji-blue rounded-lg shadow-sm transition";
+                btnList.className = "flex-1 py-1.5 text-sm font-bold text-gray-500 hover:text-fuji-blue transition";
+                tabAdd.classList.remove('hidden'); tabList.classList.add('hidden');
+            } else {
+                btnList.className = "flex-1 py-1.5 text-sm font-bold bg-white text-fuji-blue rounded-lg shadow-sm transition";
+                btnAdd.className = "flex-1 py-1.5 text-sm font-bold text-gray-500 hover:text-fuji-blue transition";
+                tabList.classList.remove('hidden'); tabAdd.classList.add('hidden');
+                renderSettlement();
+            }
+        }
+
+        function calculateSplit() {
+            const amount = parseFloat(document.getElementById('expenseAmount').value) || 0;
+            const currency = document.getElementById('currencyType').value;
+            const rate = parseFloat(document.getElementById('exchangeRate').value) || 42;
+            let twdTotal = currency === 'KRW' ? Math.round(amount / rate) : Math.round(amount);
+            
+            // 抓取打勾的成員
+            const checkedBoxes = Array.from(document.querySelectorAll('#splittersGroup input[type="checkbox"]:checked'));
+            const splitters = checkedBoxes.map(cb => cb.value);
+            
+            const perPerson = splitters.length > 0 ? Math.round(twdTotal / splitters.length) : 0;
+
+            document.getElementById('convertedTotal').innerText = `NT$ ${twdTotal.toLocaleString()}`;
+            document.getElementById('splitCount').innerText = splitters.length;
+            document.getElementById('previewPerPerson').innerText = `NT$ ${perPerson.toLocaleString()}`;
+            
+            return { item: document.getElementById('expenseItem').value || "未命名消費", amount, currency, twdTotal, splitters };
+        }
+
+        function loadExpenses() {
+            const saved = localStorage.getItem('korea_trip_expenses_v2');
+            if (saved) expenseRecords = JSON.parse(saved);
+        }
+
+        function saveExpenseRecord() {
+            const amountVal = document.getElementById('expenseAmount').value;
+            if (!amountVal || amountVal <= 0) { alert('⚠️ 請先輸入正確的消費金額！'); return; }
+            
+            const data = calculateSplit();
+            if (data.splitters.length === 0) { alert('⚠️ 至少要勾選一位分擔成員唷！'); return; }
+
+            const record = {
+                id: Date.now(),
+                item: data.item,
+                amount: data.amount,
+                currency: data.currency,
+                twdTotal: data.twdTotal,
+                payer: document.getElementById('payerName').value,
+                splitters: data.splitters // 存入參與分帳的人
+            };
+            
+            expenseRecords.push(record);
+            localStorage.setItem('korea_trip_expenses_v2', JSON.stringify(expenseRecords));
+            
+            // 復原輸入框與全選狀態
+            document.getElementById('expenseItem').value = '';
+            document.getElementById('expenseAmount').value = '';
+            initCheckboxes();
+            calculateSplit();
+            
+            alert('✅ 儲存成功！可切換至「明細與結算」查看。');
+        }
+
+        function deleteExpense(id) {
+            if(confirm("確定要刪除這筆消費紀錄嗎？")) {
+                expenseRecords = expenseRecords.filter(r => r.id !== id);
+                localStorage.setItem('korea_trip_expenses_v2', JSON.stringify(expenseRecords));
+                renderSettlement();
+            }
+        }
+
+        function clearAllExpenses() {
+            if(confirm("🚨 警告：確定要清空所有的記帳明細嗎？")) {
+                expenseRecords = [];
+                localStorage.setItem('korea_trip_expenses_v2', JSON.stringify(expenseRecords));
+                renderSettlement();
+            }
+        }
+
+        // 渲染結算畫面 (全新演算法)
+        function renderSettlement() {
+            const listContainer = document.getElementById('expenseListContainer');
+            const resultContainer = document.getElementById('settlementResults');
+            const personalTotalContainer = document.getElementById('personalTotalContainer');
+            
+            listContainer.innerHTML = ''; resultContainer.innerHTML = ''; personalTotalContainer.innerHTML = '';
+
+            if (expenseRecords.length === 0) {
+                listContainer.innerHTML = '<p class="text-gray-400 text-center py-4">目前還沒有紀錄唷！</p>';
+                document.getElementById('finalTotalCost').innerText = 'NT$ 0';
+                resultContainer.innerHTML = '<p class="text-gray-400 text-center py-2">無須結算</p>';
+                return;
+            }
+
+            let totalTwd = 0;
+            // paidMap: 他墊了多少錢
+            let paidMap = { "Amber":0, "Enzo":0, "Leon":0, "維尼":0, "冠妤":0 };
+            // shouldPayMap: 他實際花費了多少錢(該付的)
+            let shouldPayMap = { "Amber":0, "Enzo":0, "Leon":0, "維尼":0, "冠妤":0 };
+
+            // 1. 產生明細列表並統計
+            expenseRecords.forEach(record => {
+                totalTwd += record.twdTotal;
+                paidMap[record.payer] += record.twdTotal;
+                
+                // 計算這筆帳單每個人該負擔多少
+                let splitAmt = record.twdTotal / record.splitters.length;
+                record.splitters.forEach(p => { shouldPayMap[p] += splitAmt; });
+                
+                let originalDisplay = record.currency === 'KRW' ? `(₩ ${record.amount.toLocaleString()})` : '';
+                let peopleTag = record.splitters.length === 5 ? '平分' : `${record.splitters.length}人分`;
+
+                listContainer.innerHTML += `
+                    <div class="bg-white rounded-lg p-3 shadow-sm border border-gray-100 flex justify-between items-center relative">
+                        <button onclick="deleteExpense(${record.id})" class="absolute -top-2 -right-2 bg-red-100 text-red-500 rounded-full w-6 h-6 flex justify-center items-center text-xs shadow-sm"><i class="fa-solid fa-trash-can"></i></button>
+                        <div>
+                            <p class="font-bold text-gray-700">${record.item} <span class="text-[10px] text-gray-400 font-normal">${originalDisplay}</span></p>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="text-[10px] text-fuji-blue bg-blue-50 px-1.5 py-0.5 rounded"><i class="fa-solid fa-user mr-1"></i>${record.payer}墊</span>
+                                <span class="text-[10px] text-gray-400 border border-gray-200 px-1.5 py-0.5 rounded">${peopleTag}</span>
+                            </div>
+                        </div>
+                        <div class="text-right font-bold text-gray-800">NT$ ${record.twdTotal.toLocaleString()}</div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('finalTotalCost').innerText = `NT$ ${totalTwd.toLocaleString()}`;
+
+            // 顯示個人應付總額
+            members.forEach(m => {
+                let amt = Math.round(shouldPayMap[m]);
+                if(amt > 0) personalTotalContainer.innerHTML += `<div class="flex justify-between"><span>${m}</span><span>NT$ ${amt.toLocaleString()}</span></div>`;
+            });
+
+            // 2. 計算轉帳指示
+            let balances = {}; 
+            members.forEach(m => { balances[m] = paidMap[m] - shouldPayMap[m]; }); // 正=別人欠他，負=他欠別人
+
+            let debtors = members.filter(m => balances[m] < -0.5).map(m => ({name: m, amount: Math.abs(balances[m])}));
+            let creditors = members.filter(m => balances[m] > 0.5).map(m => ({name: m, amount: balances[m]}));
+
+            let transactions = [];
+            let i = 0, j = 0;
+
+            while(i < debtors.length && j < creditors.length) {
+                let d = debtors[i], c = creditors[j];
+                let amt = Math.min(d.amount, c.amount);
+
+                if (amt >= 1) {
+                    transactions.push(`👉 <strong>${d.name}</strong> 應給 <strong>${c.name}</strong> <span class="text-emerald-600 font-bold">NT$ ${Math.round(amt).toLocaleString()}</span>`);
                 }
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+                d.amount -= amt; c.amount -= amt;
+                if (d.amount < 0.5) i++; if (c.amount < 0.5) j++;
+            }
+
+            if (transactions.length === 0) {
+                resultContainer.innerHTML = '<p class="text-emerald-600 text-center py-2 font-bold">🎉 大家互不相欠，帳目完美平衡！</p>';
+            } else {
+                transactions.forEach(t => { resultContainer.innerHTML += `<div class="bg-gray-50 rounded px-2 py-1.5">${t}</div>`; });
+            }
+        }
+
+        // 總結算通知 LINE
+        function copySettlementToLine() {
+            if(expenseRecords.length === 0) { alert('沒有消費紀錄可以結算喔！'); return; }
+            
+            let totalTwd = 0;
+            let paidMap = { "Amber":0, "Enzo":0, "Leon":0, "維尼":0, "冠妤":0 };
+            let shouldPayMap = { "Amber":0, "Enzo":0, "Leon":0, "維尼":0, "冠妤":0 };
+
+            expenseRecords.forEach(r => { 
+                totalTwd += r.twdTotal; 
+                paidMap[r.payer] += r.twdTotal; 
+                let splitAmt = r.twdTotal / r.splitters.length;
+                r.splitters.forEach(p => shouldPayMap[p] += splitAmt);
+            });
+            
+            let balances = {};
+            members.forEach(m => { balances[m] = paidMap[m] - shouldPayMap[m]; });
+            let debtors = members.filter(m => balances[m] < -0.5).map(m => ({name: m, amount: Math.abs(balances[m])}));
+            let creditors = members.filter(m => balances[m] > 0.5).map(m => ({name: m, amount: balances[m]}));
+
+            let msg = `🧾 🇰🇷 韓國小旅行・最終結算報表 🇰🇷 🧾\n=========================\n`;
+            msg += `💰 團隊總花費：NT$ ${totalTwd.toLocaleString()}\n`;
+            msg += `=========================\n`;
+            msg += `📊 【個人實際花費參考】\n`;
+            members.forEach(m => {
+                if(shouldPayMap[m] > 0) msg += `- ${m}：NT$ ${Math.round(shouldPayMap[m]).toLocaleString()}\n`;
+            });
+            msg += `=========================\n`;
+            msg += `💸 【最終轉帳指示】\n\n`;
+
+            let i = 0, j = 0, count = 0;
+            while(i < debtors.length && j < creditors.length) {
+                let d = debtors[i], c = creditors[j];
+                let amt = Math.min(d.amount, c.amount);
+                if (amt >= 1) {
+                    msg += `👉 ${d.name} 應給 ${c.name} ➡️ NT$ ${Math.round(amt).toLocaleString()}\n`;
+                    count++;
+                }
+                d.amount -= amt; c.amount -= amt;
+                if (d.amount < 0.5) i++; if (c.amount < 0.5) j++;
+            }
+            if(count === 0) msg += `大家互不相欠，完美平衡！\n`;
+            msg += `\n❤️ 謝謝大家，請記得轉帳唷！`;
+
+            navigator.clipboard.writeText(msg).then(() => {
+                const successMsg = document.getElementById('copySuccessMsg');
+                successMsg.classList.remove('hidden');
+                setTimeout(() => successMsg.classList.add('hidden'), 3000);
+            }).catch(() => alert('複製失敗，請檢查瀏覽器權限。'));
+        }
+
+        /* ================= 錨點滑動邏輯 ================= */
+        document.querySelectorAll('.bottom-nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelectorAll('.bottom-nav a').forEach(a => {
+                    a.classList.remove('text-fuji-blue'); a.classList.add('text-gray-400');
                 });
+                this.classList.remove('text-gray-400'); this.classList.add('text-fuji-blue');
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
         });
-    </script>
+    <script type="module">
+    // 1. 引入 Firebase 核心與 Firestore 模組
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // 2. 貼上你在 Step 1 複製的 Firebase 專案設定金鑰
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+
+    // 初始化 Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // 定義雲端資料庫的文件位置 (集中存在同一個名為 trip_data 的文件裡)
+    const docRef = doc(db, "korea_trip", "current_status");
+
+    const members = ["Amber", "Enzo", "Leon", "維尼", "冠妤"];
+    window.expenseRecords = []; // 提升為全域變數方便管理
+
+    // 頁面載入時：改從 Firebase 雲端讀取行程與記帳
+    window.addEventListener('DOMContentLoaded', async () => {
+        initMemberCheckboxes();
+        
+        try {
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                const cloudData = docSnap.data();
+                
+                // 還原行程文字內容
+                if (cloudData.htmlData) {
+                    document.getElementById('editable-wrapper').innerHTML = cloudData.htmlData;
+                }
+                // 還原記帳明細
+                if (cloudData.expenses) {
+                    window.expenseRecords = cloudData.expenses;
+                }
+            }
+        } catch (error) {
+            console.error("雲端讀取失敗:", error);
+        }
+    });
+
+    // 3. 改寫儲存行程邏輯（搭配 1441 密碼）
+    window.requestEdit = function() {
+        if (prompt("🔒 請輸入編輯密碼：") === "1441") {
+            document.getElementById('editBtn').classList.add('hidden');
+            document.getElementById('saveBtn').classList.remove('hidden');
+            document.querySelectorAll('#editable-wrapper h1 span, #editable-wrapper h2, #editable-wrapper h3, #editable-wrapper p, #editable-wrapper span.rounded-full, #editable-wrapper span.rounded-md').forEach(el => {
+                if (!el.querySelector('i')) el.setAttribute('contenteditable', 'true');
+            });
+            alert("✨ 已進入雲端編輯模式！");
+        } else { alert("❌ 密碼錯誤！"); }
+    }
+
+    window.saveEdit = async function() {
+        document.querySelectorAll('[contenteditable="true"]').forEach(el => el.removeAttribute('contenteditable'));
+        
+        const currentHtml = document.getElementById('editable-wrapper').innerHTML;
+        
+        // 儲存至 Firebase
+        await setDoc(docRef, { 
+            htmlData: currentHtml, 
+            expenses: window.expenseRecords 
+        }, { merge: true });
+
+        document.getElementById('saveBtn').classList.add('hidden');
+        document.getElementById('editBtn').classList.remove('hidden');
+        alert("✅ 修改已即時同步至雲端！");
+    }
+
+    // 4. 改寫記帳儲存邏輯
+    window.saveExpenseRecord = async function() {
+        const data = calculateSplit();
+        if (data.twdTotal <= 0) { alert('⚠️ 請先輸入正確的消費金額！'); return; }
+        if (data.involved.length === 0) { alert('⚠️ 至少要選擇一位分帳成員喔！'); return; }
+        
+        const record = {
+            id: Date.now(),
+            item: data.item,
+            amount: data.amount,
+            currency: data.currency,
+            twdTotal: data.twdTotal,
+            payer: document.getElementById('payerName').value,
+            involved: data.involved
+        };
+        
+        window.expenseRecords.push(record);
+        
+        // 同步到 Firebase
+        await setDoc(docRef, { expenses: window.expenseRecords }, { merge: true });
+        
+        document.getElementById('expenseItem').value = '';
+        document.getElementById('expenseAmount').value = '';
+        document.querySelectorAll('#memberCheckboxes input').forEach(cb => cb.checked = true);
+        calculateSplit();
+        
+        alert('✅ 帳單已成功同步至雲端庫！');
+    }
+
+    // 5. 改寫刪除單筆邏輯
+    window.deleteExpense = async function(id) {
+        if(confirm("確定要刪除這筆消費紀錄嗎？")) {
+            window.expenseRecords = window.expenseRecords.filter(r => r.id !== id);
+            await setDoc(docRef, { expenses: window.expenseRecords }, { merge: true });
+            renderSettlement();
+        }
+    }
+
+    // 6. 改寫清空邏輯
+    window.clearAllExpenses = async function() {
+        if(confirm("🚨 確定要清空所有的雲端記帳明細嗎？")) {
+            window.expenseRecords = [];
+            await setDoc(docRef, { expenses: window.expenseRecords }, { merge: true });
+            renderSettlement();
+        }
+    }
+
+    // --- 其餘輔助 UI 函式（將原本函式綁定到 window 物件確保 type="module" 下可以被 HTML 觸開） ---
+    window.toggleModal = function(show) {
+        const modal = document.getElementById('accountingModal');
+        if (show) { modal.classList.remove('hidden'); modal.classList.add('flex'); document.querySelectorAll('#memberCheckboxes input').forEach(cb => cb.checked = true); calculateSplit(); }
+        else { modal.classList.remove('flex'); modal.classList.add('hidden'); }
+    }
+    window.switchTab = function(tabName) {
+        const btnAdd = document.getElementById('tabBtnAdd'), btnList = document.getElementById('tabBtnList');
+        const tabAdd = document.getElementById('tabAdd'), tabList = document.getElementById('tabList');
+        if (tabName === 'add') {
+            btnAdd.className = "flex-1 py-1.5 text-sm font-bold bg-white text-fuji-blue rounded-lg shadow-sm";
+            btnList.className = "flex-1 py-1.5 text-sm font-bold text-gray-500 hover:text-fuji-blue";
+            tabAdd.classList.remove('hidden'); tabList.classList.add('hidden');
+        } else {
+            btnList.className = "flex-1 py-1.5 text-sm font-bold bg-white text-fuji-blue rounded-lg shadow-sm";
+            btnAdd.className = "flex-1 py-1.5 text-sm font-bold text-gray-500 hover:text-fuji-blue";
+            tabList.classList.remove('hidden'); tabAdd.classList.add('hidden');
+            renderSettlement(); 
+        }
+    }
+    window.initMemberCheckboxes = function() {
+        const container = document.getElementById('memberCheckboxes'); container.innerHTML = '';
+        members.forEach(m => {
+            container.innerHTML += `<label class="member-checkbox cursor-pointer relative"><input type="checkbox" value="${m}" checked class="peer sr-only" onchange="calculateSplit()"><div class="px-3 py-1.5 rounded-full text-xs font-medium border border-gray-200 text-gray-500 bg-gray-50 transition peer-checked:bg-fuji-blue peer-checked:text-white peer-checked:border-fuji-blue">${m}</div></label>`;
+        });
+    }
+    window.getSelectedMembers = function() { return Array.from(document.querySelectorAll('#memberCheckboxes input:checked')).map(cb => cb.value); }
+    window.calculateSplit = function() {
+        const amount = parseFloat(document.getElementById('expenseAmount').value) || 0;
+        const currency = document.getElementById('currencyType').value;
+        const rate = parseFloat(document.getElementById('exchangeRate').value) || 42;
+        const selectedM = getSelectedMembers();
+        let twdTotal = currency === 'KRW' ? Math.round(amount / rate) : Math.round(amount);
+        let perPerson = selectedM.length > 0 ? Math.round(twdTotal / selectedM.length) : 0;
+        document.getElementById('convertedTotal').innerText = `NT$ ${twdTotal.toLocaleString()}`;
+        document.getElementById('splitPreviewText').innerText = `目前 ${selectedM.length} 人分帳，每人約 NT$ ${perPerson.toLocaleString()}`;
+        return { item: document.getElementById('expenseItem').value || "未命名消費", amount, currency, twdTotal, involved: selectedM };
+    }
+    // (其餘的 renderSettlement 與 copy 邏輯跟上一版一模一樣，只需在函式前加上 `window.renderSettlement = function() { ... }` 即可在模組內正常執行)
+</script>
 </body>
 </html>
